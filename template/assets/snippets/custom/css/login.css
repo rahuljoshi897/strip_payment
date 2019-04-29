@@ -1,0 +1,12 @@
+.select2-container{
+    width:100%!important;
+}
+.select2-container--default .select2-selection--single {
+    background-color: transparent!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #e3d9fa!important;
+}
+#tnc-error, label.error{
+    color:#3f4047!important;
+}

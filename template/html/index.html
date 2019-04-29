@@ -1,0 +1,921 @@
+{% include 'common/header.html' with {'pageTitle': 'Homepage', css:[]} %}
+<div class="row">
+    <div class="col-xl-3 col-lg-4">
+        <div class="m-portlet__body">
+            <div class="m-card-profile">
+                <div class="m-card-profile__title m--hide">
+                    Your Profile
+                </div>
+                <div class="m-card-profile__pic">
+                        <form enctype="multipart/form-data" style="display:none;" id="uploadform">
+                            <input onchange="readURL(this)"  id="imgReal" type="file" name="file" accept="image/*">
+                        </form>
+                    <div class="m-card-profile__pic-wrapper">
+                        <img id="img" style="cursor: pointer;" src="{% if candidate ['avatar'] %} {{candidate['avatar']}} {% else %} /assets/app/media/img/users/no-avatar.png  {% endif %}" alt="" />
+                    </div>
+                    <div class="row text-center" id="upload-actions" style="padding-top:10px; display:none;">
+                        <button class="btn btn-info ladda-button" id="saveimg" data-style="expand-right">Save</button>
+
+                    </div>
+                </div>
+                <div class="m-card-profile__details">
+                    <span class="m-card-profile__name"> {{candidate['full_name']}}</span>
+                    <a href="" class="m-card-profile__email m-link">{{candidate['disignation']}}</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="m-portlet   ">
+                <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Social Media
+                                    </h3>
+                                </div>
+                            </div>
+                <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item m-portlet__nav-item--last">
+                                <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"  aria-expanded="true">
+                                    <a  class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  " href="#portlet-config_social_media" data-toggle="modal">
+                                        <i class="la la-edit"></i>
+                                    </a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <!--end portlet head-->
+                    <div class="m-portlet__body">
+                                <ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+
+                                        <li class="m-nav__section m--hide">
+                                            <span class="m-nav__section-text">Section</span>
+                                        </li>
+                                        <li class="m-nav__item">
+                                            <a id="facebooklink" href="{{candidate['facebook']}}" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-facebook-letter-logo"></i>
+                                                <span class="m-nav__link-title">
+                                                    <span class="m-nav__link-wrap">
+                                                        <span class="m-nav__link-text">{{candidate['facebook']}}</span>
+
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="m-nav__item">
+                                                <a id="twitterlink" href="{{candidate['twitter']}}" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-twitter-logo"></i>
+                                                    <span class="m-nav__link-title">
+                                                        <span class="m-nav__link-wrap">
+                                                            <span class="m-nav__link-text">{{candidate['twitter']}}</span>
+
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                    <a id="linkedinlink" href="{{candidate['linkedin']}}" class="m-nav__link">
+                                                        <i class="m-nav__link-icon flaticon-linkedin-logo"></i>
+                                                        <span class="m-nav__link-title">
+                                                            <span class="m-nav__link-wrap">
+                                                                <span class="m-nav__link-text">{{candidate['linkedin']}}</span>
+
+                                                            </span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+
+                                        <li class="m-nav__item">
+
+                                        </li>
+                                    </ul>
+                    </div>
+
+        </div>
+    </div>
+    <div class="col-xl-9 col-lg-8">
+      <div class="row">
+        <div class="col-md-6">
+                <div class="m-portlet   ">
+                        <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Personal information
+                                            </h3>
+                                        </div>
+                                    </div>
+                        <div class="m-portlet__head-tools">
+                                <ul class="m-portlet__nav">
+                                    <li class="m-portlet__nav-item m-portlet__nav-item--last">
+                                        <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"  aria-expanded="true">
+                                            <a  class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  " href="#portlet-config_personal_info" data-toggle="modal">
+                                                <i class="la la-edit"></i>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                            <!--end portlet head-->
+                            <div class="m-portlet__body">
+                                    <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                 Email:
+                                            </div>
+                                            <div class="col-md-7 value email-v">
+                                                    {%  if candidate['email'] %} {{candidate['email']}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                Nationality:
+                                            </div>
+                                            <div class="col-md-7 value nationality-v">
+                                                 {%  if candidate['nationality'] %} {{candidate['nationality']}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                 Phone Number:
+                                            </div>
+                                            <div class="col-md-7 value full-phone-v">
+                                                   {{candidate['code']}} {%  if candidate['phone'] %} {{candidate['phone']}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+
+                                            <div class="row static-info">
+                                                    <div class="col-md-5 name">
+                                                         Address:
+                                                    </div>
+                                                    <div class="col-md-7 value address-v">
+                                                            {%  if candidate['address'] %} {{candidate['address']}} {% else%} NA {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                        <div class="col-md-5 name">
+                                                             City:
+                                                        </div>
+                                                        <div class="col-md-7 value  city-v">
+                                                                {%  if candidate['city'] %} {{candidate['city']}} {% else%} NA {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                            <div class="col-md-5 name">
+                                                                 Country:
+                                                            </div>
+                                                            <div class="col-md-7 value county-v">
+                                                                    {%  if country %} {{country}} {% else%} NA {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row static-info">
+                                                                <div class="col-md-5 name">
+                                                                     Date of birth:
+                                                                </div>
+                                                                <div class="col-md-7 value">
+                                                                        {%  if candidate['date_of_birth'] %} {{candidate['date_of_birth']}} {% else%} NA {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row static-info">
+                                                                    <div class="col-md-5 name">
+                                                                         Gender:
+                                                                    </div>
+                                                                    <div class="col-md-7 value gender-v">
+                                                                            {%  if gender %} {{gender}} {% else%} NA {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row static-info">
+                                                                        <div class="col-md-5 name">
+                                                                             Education:
+                                                                        </div>
+                                                                        <div class="col-md-7 value education-v">
+                                                                                {%  if candidate['education'] %} {{candidate['education']}} {% else%} NA {% endif %}
+                                                                        </div>
+                                                                    </div>
+                            </div>
+
+                </div>
+        </div>
+        <div class="col-md-6">
+                <div class="m-portlet   ">
+                        <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Work Information
+                                            </h3>
+                                        </div>
+                                    </div>
+                        <div class="m-portlet__head-tools">
+                                <ul class="m-portlet__nav">
+                                    <li class="m-portlet__nav-item m-portlet__nav-item--last">
+                                        <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"  aria-expanded="true">
+                                            <a  class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  " href="#portlet-config_professional_info" data-toggle="modal">
+                                                <i class="la la-edit"></i>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                            <!--end portlet head-->
+                            <div class="m-portlet__body">
+
+                                    <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                 Current designation
+                                            </div>
+                                            <div class="col-md-7 value designation-v">
+                                                    {%  if candidate['disignation'] %} {{candidate['disignation']}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                Current company
+                                            </div>
+                                            <div class="col-md-7 value company-v">
+                                                    {%  if candidate['current_company'] %} {{candidate['current_company']}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                 Industry
+                                            </div>
+                                            <div class="col-md-7 value industry-v">
+                                                    {%  if industry %} {{industry}} {% else%} NA {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row static-info">
+                                                <div class="col-md-5 name">
+                                                     Salary Expectation
+                                                </div>
+                                                <div class="col-md-7 value salary-v">
+                                                        {%  if candidate['salary_expectation'] %} {{candidate['salary_expectation']}} {{candidate['currency_expectation']}} {% else%} NA {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                    <div class="col-md-5 name">
+                                                         Preferred location
+                                                    </div>
+                                                    <div class="col-md-7 value preferredLocation-v">
+                                                            {%  if candidate['preferred_country'] %} {{candidate['preferred_city']}}, {{preferred_country}} {% else%} NA {% endif %}
+                                                    </div>
+                                                </div>
+
+                                                    <div class="row static-info">
+                                                            <div class="col-md-5 name">
+                                                                 Skills
+                                                            </div>
+                                                            <div class="col-md-7 value skills-v">
+                                                                    {%  if candidate['skills'] %} {{candidate['skills']}} {% else%} NA {% endif %}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row static-info">
+                                                                <div class="col-md-5 name">
+                                                                     Total Experience
+                                                                </div>
+                                                                <div class="col-md-7 value">
+                                                                        {% if experience %} {{experience}} {% else%} NA {% endif %}
+                                                                </div>
+                                                            </div>
+                            </div>
+
+                </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="m-portlet   ">
+                            <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                            <div class="m-portlet__head-title">
+                                                <h3 class="m-portlet__head-text">
+                                                    Work Experience
+                                                </h3>
+                                            </div>
+                                        </div>
+                            <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-portlet__nav-item--last">
+                                            <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"  aria-expanded="true">
+                                                <a  class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  " href="#portlet-config_work_experience" data-toggle="modal">
+                                                    <i class="la la-edit"></i>
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </div>
+                                <!--end portlet head-->
+                                <div class="m-portlet__body">
+                                        <div class="table-scrollable table-scrollable-borderless">
+                                                <table id="w_exp" class="table table-hover table-light">
+                                                <thead>
+                                                <tr class="uppercase">
+                                                    <th >
+                                                         DESIGNATION
+                                                    </th>
+                                                    <th>
+                                                         COMPANY NAME
+                                                    </th>
+                                                    <th>
+                                                         PERIOD OF TIME
+                                                    </th>
+                                                    <th>
+                                                         KEY RESPONSIBILITY
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for experience  in workList %}
+                                                <tr data-idrow="{{experience['id']}}">
+                                                    <td class="designition">
+                                                     {{experience['designation']}}
+                                                    </td>
+                                                    <td class="company">
+                                                      {{experience['company']}}
+                                                    </td>
+                                                    <td class="period">
+                                                         {{experience['from_date']}} - {{experience['to_date']}}
+                                                    </td>
+                                                    <td class="resp">
+                                                         {{experience['key_responsibility']}}
+                                                    </td>
+                                                  <td>
+                                                        <button class='btn btn-icon-only btn-danger delete-work' onClick='deleteW("{{experience.id}}")' ><i class='fa fa-trash'></i></button>
+                                                        <button class='btn btn-icon-only default edit-work' data-to="{{experience['to_date']}}" data-from="{{experience['from_date']}}" data-id="{{experience['id']}}"><i class='fa fa-edit'></i></button>
+                                                    </td>
+
+                                                </tr>
+                                               {% endfor %}
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                            </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-12">
+                        <div class="m-portlet   ">
+                                <div class="m-portlet__head">
+                                        <div class="m-portlet__head-caption">
+                                                <div class="m-portlet__head-title">
+                                                    <h3 class="m-portlet__head-text">
+                                                        Education
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                <div class="m-portlet__head-tools">
+                                        <ul class="m-portlet__nav">
+                                            <li class="m-portlet__nav-item m-portlet__nav-item--last">
+                                                <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"  aria-expanded="true">
+                                                    <a  class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  " href="#portlet-config_education" data-toggle="modal">
+                                                        <i class="la la-edit"></i>
+                                                    </a>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <!--end portlet head-->
+                                    <div class="m-portlet__body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                    <table class="table table-hover table-light" id="education_table">
+                                                            <thead>
+                                                            <tr class="uppercase">
+                                                                <th >
+                                                                     NAME OF INSTITUTION
+                                                                </th>
+                                                                <th>
+                                                                     GRADE/DEGREE
+                                                                </th>
+                                                                <th>
+                                                                     PERIOD OF TIME
+                                                                </th>
+                                                                <th></th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                {% for ed in educations %}
+
+                                                                <tr data-idrow="{{ed['id']}}">
+                                                                    <td class='insitution_name'>{{ed['university']}}</td>
+                                                                    <td class='degree'>{{degreeList[ed['degree']]}}</td>
+                                                                    <td class='period'>{{ed['from_year']}} - {{ed['to_year']}}</td>
+                                                                    <td><button class='btn btn-icon-only btn-danger delete-education' onClick='deleteE("{{ed.id}}")' data-id="{{ed.id}}"><i class='fa fa-trash'></i></button>
+                                                                        <button  class='btn btn-icon-only default edit-education' data-from='{{ed.from_year}}' data-specialization = '{{ed.specialization}}' data-degree='{{ed.degree}}' data-qualification='{{ed.qualification}}' data-to='{{ed.to_year}}'  data-id="{{ed.id}}"><i class='fa fa-edit'></i></button></td>
+                                                                </tr>
+
+
+
+                                                           {% endfor %}
+
+                                                            </tbody>
+                                                            </table>
+                                                </div>
+                                    </div>
+                                </div>
+
+
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!---MODALS-->
+              <!--- MODALS -->
+    <div class="modal fade" id="portlet-config_social_media"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Social Media</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    <div class="modal-body">
+
+                        <form novalidate="false" id="socialform">
+                                <div class="row margin-top-10">
+                                        <div class="margin-top-20 profile-desc-link col-md-2">
+                                                <i  class="m-nav__link-icon flaticon-linkedin-logo"></i>
+
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                    <input name="linkedinvalue" id="linkedinvalue" value="{{candidate['linkedin']}}" type="text" class="form-control ">
+                                            </div>
+
+                                </div>
+                                <div class="row margin-top-10 ">
+                                        <div class="margin-top-20 profile-desc-link col-md-2">
+                                                <i class="m-nav__link-icon flaticon-facebook-letter-logo"></i>
+
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                    <input  name="facebookvalue" id="facebookvalue" type="text" value="{{candidate['facebook']}}" class="form-control ">
+                                            </div>
+
+                                </div>
+                                <div class="row margin-top-10">
+                                        <div class="margin-top-20 profile-desc-link col-md-2">
+                                                <i class="m-nav__link-icon flaticon-twitter-logo"></i>
+
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                    <input name="twittervalue" type="text" value="{{candidate['twitter']}}" id="twittervalue" class="form-control ">
+                                            </div>
+
+                                        </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary ladda-button" data-style="expand-right" id="saveSocial">Save changes</button>
+                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
+        <!--personal info-->
+                <!--PERSONAL INFO SECTION-->
+                <div class="modal fade" id="portlet-config_personal_info"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Personal information</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                <div class="modal-body">
+
+                                    <form novalidate="false" id="personalinfo">
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Email</label>
+                                            <div class="col-md-9">
+                                                <input id="emailEdit" name="emailEdit" value="{{candidate['email']}}"  type="text" class="form-control ">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Nationality</label>
+
+                                                <div class="col-md-9">
+                                                    <select id="nationalityEdit" name="nationalityEdit" value="{{candidate['nationality']}}" class="form-control m-select2 ">
+                                                        <option></option>
+                                                        {% for value in nationality %}
+                                                        <option {% if value == candidate['nationality'] %} selected {% endif %} value="{{value}}">{{value}}</option>
+                                                        {% endfor%}
+
+                                                    </select>
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">PhoneNumber</label>
+                                                    <div class="col-md-4">
+                                                        <select id="countryCode" value="{{candidate['code']}}" name="countryCode"  class="form-control select2">
+
+                                                            <option></option>
+                                                            {% for key, value in countryList %}
+                                                            <option  {% if value['code'] == candidate['code'] %} selected {% endif %} value="{{value['code']}}">{{value['name']}} +{{value['code']}}</option>
+                                                            {% endfor%}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                            <input name="phone" id="phone" placeholder="e.g 11111111" value="{{candidate['phone']}}" type="text" class="form-control ">
+                                                        </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">Address</label>
+                                                    <div class="col-md-9">
+                                                        <input  type="text" id="addressEdit" name="addressEdit" value="{{candidate['address']}}" class="form-control ">
+                                                    </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">City</label>
+                                                    <div class="col-md-9">
+                                                        <input  type="text" id="cityEdit" name="cityEdit" value="{{candidate['city']}}" class="form-control ">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                        <label class="col-md-3">Country</label>
+                                                        <div class="col-md-9">
+                                                           <select name="countryEdit" value="{{candidate['country']}}" id="countryEdit" class="form-control select2">
+                                                              <option value=""></option>
+                                                               {% for key, value in countryList%}
+                                                                    <option {% if key == candidate['country'] %} selected {% endif %} value="{{key}}"  >{{value['name']}}</option>
+                                                               {% endfor%}
+
+                                                           </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group row">
+                                                            <label class="col-md-3">Date of birth</label>
+                                                            <div class="col-md-9">
+                                                                <input id="dateofBirthEdit" data-date-format="yyyy-mm-dd" data-date-viewmode="years" name="dateofBirthEdit" value="{{candidate['date_of_birth']}}" readonly  type="text" class="form-control date-picker">
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="form-group row">
+                                                            <label class="col-md-3">Gender</label>
+                                                            <div class="col-md-9">
+
+                                                                <select id="editGender" class="form-control" name="editGender" value="{{candidate['gender']}}">
+                                                                    <option value="m" {% if 'm' == candidate['gender'] %} selected {% endif %} >Male</option>
+                                                                    <option value="f" {% if 'f' == candidate['gender'] %} selected {% endif %}>Female</option>
+                                                                </select>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row">
+                                                                <label class="col-md-3">Education</label>
+                                                                <div class="col-md-9">
+                                                                   <select value="{{candidate['education']}}" name="educationChange" id="educationChange" class="form-control ">
+
+                                                                        {% for key,value in educationList %}
+                                                                        <option {% if key == candidate['education'] %} selected {% endif %} value="{{key}}">{{value}}</option>
+                                                                        {% endfor %}
+
+                                                                   </select>
+                                                                </div>
+
+                                                            </div>
+
+                                    </form>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary ladda-button" data-style="expand-right" id="savePersonal">Save changes</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+        <!--end personal info-->
+            <!--PROFESSIONAL SECTION-->
+            <div class="modal fade" id="portlet-config_professional_info"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Professional Information</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                            <div class="modal-body">
+
+                                <form novalidate="false" id="professionalinfo">
+                                    <div class="form-group row">
+                                        <label class="col-md-3">Current designation</label>
+                                        <div class="col-md-9">
+                                            <input id="designation" name="designation" value="{{candidate['disignation']}}"  type="text" class="form-control ">
+                                        </div>
+
+                                    </div>
+
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Salary Expectation</label>
+                                                <div class="col-md-4">
+                                                    <select id="selaryExpCur" value="{{candidate['currency_expectation']}}" name="salaryExpCur"  class="form-control select2">
+
+                                                        <option></option>
+                                                        {% for key, value in currency %}
+                                                        <option  {% if key == candidate['currency_expectation'] %} selected {% endif %} value="{{key}}">{{key}}</option>
+                                                        {% endfor%}
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                        <input name="salary" id="salary" placeholder="salary expectation" value="{{candidate['salary_expectation']}}" type="text" class="form-control ">
+                                                    </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Industry</label>
+                                                <div class="col-md-9">
+                                                    <select name="industryList" id="industryList" class="selec2 form-control">
+                                                    <option></option>
+
+                                                        {% for key,value in industryList%}
+                                                            <option {% if candidate['industry']==key %} selected {% endif %} value="{{key}}">{{value}}</option>
+                                                        {% endfor%}
+                                                    </select>
+                                                </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Current company</label>
+                                                <div class="col-md-9">
+                                                    <input id="currentCompany" name="currentCompany" value="{{candidate['current_company']}}"  type="text" class="form-control ">
+                                                </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Preferred location</label>
+                                                <div class="col-md-5">
+                                                    <select name="preferredCountry" id="preferredCountry" class="form-control">
+                                                        <option value=""></option>
+                                                        {% for key,value in countryList %}
+                                                            <option {% if candidate['preferred_country']==key %} selected {% endif %}value="{{key}}">{{value['name']}}</option>
+                                                        {% endfor %}
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" value="{{candidate['preferred_city']}}" id="prefferedCity" name="preferredCity" placeholder="Preffered city" class="form-control">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">Skills</label>
+
+                                                    <div class="col-md-9">
+                                                        {% if candidate['skills']%}
+                                                        {% set skills = candidate['skills']|split(',') %}
+                                                        {% else %}
+                                                        {% set skills = [] %}
+                                                        {% endif %}
+
+                                                        <select type="hidden" multiple name="skills" id="skills" class="form-control m-select2" value="{{candidate['skills']}}">
+                                                                {% for s in skills%}
+                                                                <option selected value="{{s}}">{{s}}</option>
+                                                                {% endfor%}
+                                                        </select>
+
+                                                    </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">Total experience</label>
+
+                                                    <div class="col-md-9">
+                                                      <select name="totalExperience" id="totalExperience" class="form-control">
+                                                          <option value=""></option>
+                                                          {% for key,value in experienceList %}
+                                                          <option {% if key==candidate['experience'] %} selected {% endif%} value="{{key}}">{{value}}</option>
+                                                          {% endfor %}
+                                                      </select>
+                                                    </div>
+
+                                            </div>
+
+                                </form>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary ladda-button" data-style="expand-right" id="saveProfessional">Save changes</button>
+                                <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    </div>
+
+                      <!-- /.modal-dialog -->
+                <div class="modal fade" id="portlet-config_work_experience" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Work Experience</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                <div class="modal-body">
+
+                                    <form novalidate="false" id="works">
+                                        <input type="hidden" id="works_id" name="works_id" value=null >
+                                        <div class="form-group row">
+                                            <label class="col-md-3">Designition</label>
+                                            <div class="col-md-9">
+                                                <input id="work_designation" name="work_designation" value=""  type="text" class="form-control ">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Key Responsibility</label>
+                                                <div class="col-md-9">
+                                                    <textarea id="resp" name="resp" value=""   class="form-control "></textarea>
+                                                </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">Company name</label>
+                                                <div class="col-md-9">
+                                                    <input id="work_company_name" name="work_company_name" value=""  type="text" class="form-control ">
+                                                </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                                <label class="col-md-3">From:</label>
+                                                <div class="col-md-4">
+                                                    <input readonly id="from" data-date-format="yyyy-mm-dd" data-date-viewmode="years" name="from" value=""  type="text" class="form-control date-picker">
+                                                </div>
+                                                <label class="col-md-1">To:</label>
+                                                <div class="col-md-4">
+                                                    <input readonly id="to" data-date-format="yyyy-mm-dd" data-date-viewmode="years" name="to" value=""  type="text" class="form-control date-picker">
+                                        </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary ladda-button" data-style="expand-right" id="saveWorkExperience">Save changes</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <!---->
+
+                    <div class="modal fade" id="portlet-config_education"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h4 class="modal-title">Education</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <spandata-dismiss="modal" aria-hidden="true"></span>
+                                        </button>
+
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form novalidate="false" id="education">
+                                            <input type="hidden" id="education_id" name="education_id"  >
+                                            <div class="form-group row">
+                                                <label class="col-md-3">University/School</label>
+                                                <div class="col-md-9">
+                                                    <input id="education_name" name="education_name" value=""  type="text" class="form-control ">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                    <label class="col-md-3">Qualification</label>
+                                                    <div class="col-md-9">
+                                                       <select class="form-control m-select2" name="education_qualification" id="education_qualification">
+                                                           <option ></option>
+                                                           {% for key,value in  educationList %}
+                                                                <option value="{{key}}">{{value}}</option>
+                                                           {% endfor %}
+                                                       </select>
+                                                    </div>
+
+                                            </div>
+
+                                                <div class="form-group row">
+                                                        <label class="col-md-3">Degree</label>
+                                                        <div class="col-md-9">
+                                                           <select name="education_degree" class="form-control m-select2" id="education_degree">
+                                                               <option value=""></option>
+                                                               {% for key,value in degreeList%}
+                                                                <option value="{{key}}">{{value}}</option>
+                                                               {% endfor%}
+                                                           </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group row">
+                                                            <label class="col-md-3">Specialization</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" id="education_spec" name="education_spec">
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="form-group row">
+                                                            <label class="col-md-3">From:</label>
+                                                            <div class="col-md-4">
+
+                                                                <select name="from_education" id="from_education" class="form-control m-select2">
+
+                                                                    <option value=""></option>
+                                                                    {%for i in "now"|date("Y")-100.."now"|date("Y")%}
+                                                                        <option>{{i}}</option>
+
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                            <label class="col-md-1">To:</label>
+                                                            <div class="col-md-4">
+                                                                <select name="to_education" id="to_education" class="form-control m-select2">
+
+                                                                    <option value=""></option>
+                                                                    {%for i in "now"|date("Y")-100.."now"|date("Y")%}
+                                                                        <option>{{i}}</option>
+
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+
+
+                                                    </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary ladda-button" data-style="expand-right" id="saveEducation">Save changes</button>
+                                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+{% include 'common/footer.html' %}
+
+<script>
+var FILESIZE = '{{ filesize }}';
+FILESIZE = FILESIZE*1;
+var specList = {{degreeList|json_encode(constant("JSON_PRETTY_PRINT"))|raw}}
+
+</script>
+<script src="../assets/app/js/dashboard.js"></script>
+
+
+{% include 'common/footer_end.html' %}

@@ -1,0 +1,82 @@
+{% include 'common/header.html' with {'pageTitle': 'My CV'} %}
+
+<!--<div class="page-content">
+    <div class="container">
+            <div class="row">
+              
+                    <div class="col-md-12">
+                            <p>
+                                    <span class="label label-danger">
+                                    NOTE: </span>
+                                    &nbsp; Accepted format Word and PDF, maximum file size 2 MB
+                                    
+                                    <div id="full_div" {% if  candidate.cv==null %}  style="display:none" {% endif %}>
+                                    &nbsp;<a id="myCVLink" href="{{candidate.cv}}" target="_blank">Preview your CV</a> . 
+                                    <p>
+                                    If you want to change your CV drag and drop file or click to upload
+                                    </p>
+                                </div>
+                                  
+                                </p>
+                     
+                        <div class="m-dropzone dropzone" action="API/upload_cv.php" id="m-dropzone-one">
+                            <div class="m-dropzone__msg dz-message needsclick">
+                                <h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div> -->
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Upload Your CV
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!--begin::Form-->
+    <div class="m-form m-form--fit m-form--label-align-right">
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <div class="col-form-label col-lg-3 col-sm-12">
+                    <p>
+                        <span class="m-badge m-badge--danger m-badge--wide">
+                        NOTE: </span>
+                        &nbsp; Accepted format Word and PDF, maximum file size 2 MB
+                        
+                        <div id="full_div" {% if  candidate.cv==null %}  style="display:none" {% endif %}>
+                        &nbsp;<a id="myCVLink" href="{{candidate.cv}}" target="_blank">Preview your CV</a> . 
+                        <p>
+                        If you want to change your CV drag and drop file or click to upload
+                        </p>
+                    </div>
+                      
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-9 col-sm-12">
+                    <div class="m-dropzone dropzone" action="API/upload_cv.php" id="m-dropzone-one">
+                        <div class="m-dropzone__msg dz-message needsclick">
+                            <h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+       
+    </div>
+
+    <!--end::Form-->
+</div>
+
+{% include 'common/footer.html' %}
+<script src="../assets/app/js/cv.js"></script>
+
+{% include 'common/footer_end.html' %}
